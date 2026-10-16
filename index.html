@@ -1,0 +1,269 @@
+﻿
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+* { box-sizing: border-box; }
+
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+background: #f3f6fa;
+padding: 20px;
+}
+
+.entete {
+background: #152b49;
+color: white;
+padding: 25px;
+border-radius: 10px;
+text-align: center;
+}
+
+.entete h1 {
+font-size: 24px;
+margin: 10px 0;
+}
+
+.section {
+background: white;
+padding: 25px;
+margin-top: 20px;
+border-radius: 10px;
+}
+
+.section h3 {
+color: #152b49;
+}
+
+.ligne {
+display: flex;
+gap: 20px;
+flex-wrap: wrap;
+align-items: flex-end;
+margin-top: 25px;
+}
+
+.champ {
+display: flex;
+flex-direction: column;
+gap: 10px;
+max-width: 100%;
+}
+
+.champ label {
+font-weight: bold;
+font-size: 14px;
+}
+
+.champ input,
+.champ select {
+height: 42px;
+padding: 8px 12px;
+border: 1px solid #ccc;
+border-radius: 6px;
+font-family: Arial, sans-serif;
+max-width: 100%;
+}
+
+.largeur-type { width: 268px; }
+.largeur-date { width: 224px; }
+.largeur-general { width: 268px; }
+
+.largeur-identifiant { width: 320px; }
+.largeur-secteur { width: 300px; }
+.largeur-categorie { width: 270px; }
+.largeur-effectif { width: 150px; }
+
+.contingent {
+background: #f3f6fa;
+padding: 15px;
+border-radius: 8px;
+margin-top: 15px;
+}
+
+.contingent .ligne {
+margin-top: 15px;
+}
+
+#ajouterContingent {
+margin-top: 20px;
+padding: 12px 20px;
+background: #2563eb;
+color: white;
+border: none;
+border-radius: 6px;
+font-weight: bold;
+cursor: pointer;
+}
+
+#ajouterContingent:hover {
+background: #1d4ed8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="entete">
+<h3>RGNA</h3>
+<h1>DÉCLARATION JOURNALIÈRE DES EFFECTIFS</h1>
+<p>Suivi des effectifs opérationnels engagés</p>
+</div>
+
+<div class="section">
+<h3>INFORMATIONS GÉNÉRALES</h3>
+
+<div class="ligne">
+
+<div class="champ">
+<label for="typeDeclaration">TYPE DE DÉCLARATION</label>
+<select id="typeDeclaration" class="largeur-type">
+<option value="">Sélectionner un type...</option>
+<option value="INITIALE">INITIALE</option>
+<option value="COMPLÉMENTAIRE">COMPLÉMENTAIRE</option>
+</select>
+</div>
+
+<div class="champ">
+<label for="dateSituation">DATE DE SITUATION</label>
+<input type="date" id="dateSituation" class="largeur-date">
+</div>
+
+<div class="champ">
+<label for="operation">OPÉRATION CONCERNÉE</label>
+<select id="operation" class="largeur-general">
+<option value="">Sélectionner une opération...</option>
+<option value="OPERATION TEST">OPÉRATION TEST</option>
+<option value="OPERATION TEST 2">OPÉRATION TEST 2</option>
+</select>
+</div>
+
+<div class="champ">
+<label for="groupement">GROUPEMENT DÉCLARANT</label>
+<select id="groupement" class="largeur-general">
+<option value="">Sélectionner un groupement...</option>
+<option value="GGD 33">GGD 33</option>
+<option value="GGD 40">GGD 40</option>
+<option value="GGM II/2">GGM II/2</option>
+<option value="GGM VI/2">GGM VI/2</option>
+<option value="GTG TEST">GTG TEST</option>
+<option value="GOMO TEST">GOMO TEST</option>
+</select>
+</div>
+
+</div>
+
+<div class="ligne">
+<div class="champ">
+<label for="nomDeclarant">NOM ET PRÉNOM DU DÉCLARANT</label>
+<input type="text" id="nomDeclarant"
+class="largeur-general"
+placeholder="Nom et prénom"
+required>
+</div>
+
+<div class="champ">
+<label for="telephoneDeclarant">TÉLÉPHONE PROFESSIONNEL DU DÉCLARANT</label>
+<input type="tel" id="telephoneDeclarant"
+class="largeur-general"
+placeholder="Numéro professionnel"
+required>
+</div>
+</div>
+</div>
+<div class="section">
+<h3>EFFECTIFS ENGAGÉS PAR CONTINGENT</h3>
+
+<p style="color:#555;">
+Renseignez chaque compagnie, EGM ou renfort engagé.
+Une ligne correspond à un contingent, un secteur
+et une catégorie de personnel.
+</p>
+
+<div id="listeContingents">
+
+<div class="contingent" id="contingentBloc1">
+<strong>CONTINGENT N° 1</strong>
+
+<div class="ligne">
+
+<div class="champ">
+<label for="contingent1">IDENTIFIANT DU CONTINGENT</label>
+<input
+type="text"
+id="contingent1"
+class="largeur-identifiant"
+placeholder="Ex. : EGM 26/2, COB LIBOURNE, RENFORT EG"
+>
+</div>
+
+<div class="champ">
+<label for="secteur1">SECTEUR OPÉRATIONNEL</label>
+<select id="secteur1" class="largeur-secteur">
+<option value="">Sélectionner un secteur...</option>
+<option value="BORDEAUX">BORDEAUX</option>
+
+<option value="MONT-DE-MARSAN">MONT-DE-MARSAN</option>
+
+<option value="BAYONNE">BAYONNE</option>
+<option value="BORDEAUX TEST 2">BORDEAUX TEST 2</option>
+</select>
+</div>
+
+<div class="champ">
+<label for="categorie1">CATÉGORIE DE PERSONNEL</label>
+<select id="categorie1" class="largeur-categorie">
+<option value="">Sélectionner une catégorie...</option>
+<option value="GD">GD</option>
+<option value="GM">GM</option>
+<option value="ÉLÈVES GENDARMES">ÉLÈVES GENDARMES</option>
+<option value="RÉSERVISTES">RÉSERVISTES</option>
+
+</select>
+</div>
+
+<div class="champ">
+<label for="effectif1">EFFECTIF ENGAGÉ</label>
+<input
+type="number"
+id="effectif1"
+class="largeur-effectif"
+min="1"
+step="1"
+placeholder="Ex. : 25"
+>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<button type="button" id="ajouterContingent">
++ AJOUTER UN CONTINGENT
+</button>
+
+<div style="margin-top:30px; border-top:1px solid #ddd; padding-top:25px;">
+
+<button type="button"
+id="transmettreDeclaration"
+style="background:#15803d;
+color:white;
+padding:14px 28px;
+border:none;
+border-radius:6px;
+font-weight:bold;
+font-size:14px;
+cursor:pointer;">
+TRANSMETTRE LA DÉCLARATION
+</button>
+
+</div>
+
+</div>
+
+</body>
+</html>
+
